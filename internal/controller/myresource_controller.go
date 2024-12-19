@@ -47,10 +47,17 @@ type MyResourceReconciler struct {
 // For more details, check Reconcile and its Result here:
 // - https://pkg.go.dev/sigs.k8s.io/controller-runtime@v0.19.1/pkg/reconcile
 func (r *MyResourceReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ctrl.Result, error) {
-	_ = log.FromContext(ctx)
+	logger := log.FromContext(ctx)
 
-	// TODO(user): your logic here
+	logger.Info("Reconciling MyResource")
 
+	myResource := &mygroupv1alpha1.MyResource{}
+
+	err := r.Get(ctx, req.NamespacedName, myResource)
+	if err != nil {
+		return ctrl.Result{}, client.IgnoreNotFound(err)
+	}
+	logger.Info("Reconciling MyResource", "Size", myResource.Spec.Size)
 	return ctrl.Result{}, nil
 }
 
