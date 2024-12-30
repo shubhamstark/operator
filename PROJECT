@@ -17,4 +17,13 @@ resources:
   kind: MyResource
   path: my-operator/api/v1alpha1
   version: v1alpha1
+- api:
+    crdVersion: v1
+    namespaced: true
+  controller: true
+  domain: mydomain.com
+  group: mygroup
+  kind: AppInstance
+  path: my-operator/api/v1alpha1
+  version: v1alpha1
 version: "3"

@@ -1,35 +1,23 @@
----
+# permissions for end users to view appinstances.
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: manager-role
+  labels:
+    app.kubernetes.io/name: my-operator
+    app.kubernetes.io/managed-by: kustomize
+  name: appinstance-viewer-role
 rules:
 - apiGroups:
   - mygroup.mydomain.com
   resources:
   - appinstances
-  - myresources
   verbs:
-  - create
-  - delete
   - get
   - list
-  - patch
-  - update
   - watch
 - apiGroups:
   - mygroup.mydomain.com
   resources:
-  - appinstances/finalizers
-  - myresources/finalizers
-  verbs:
-  - update
-- apiGroups:
-  - mygroup.mydomain.com
-  resources:
   - appinstances/status
-  - myresources/status
   verbs:
   - get
-  - patch
-  - update

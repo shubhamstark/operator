@@ -1,9 +1,9 @@
 apiVersion: mygroup.mydomain.com/v1alpha1
-kind: MyResource
+kind: AppInstance
 metadata:
   labels:
     app.kubernetes.io/name: my-operator
     app.kubernetes.io/managed-by: kustomize
-  name: myresource-sample
+  name: appinstance-sample
 spec:
   size: 3
